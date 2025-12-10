@@ -74,6 +74,7 @@ function App() {
       }));
 
       setTeams(processedTeams);
+      setAllTeams(processedTeams);
     } catch (err) {
       console.error(err);
     }
