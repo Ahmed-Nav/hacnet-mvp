@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     if (user && user.id) {
       axios
-        .get(`http://localhost:5000/my-requests/${user.id}`)
+        .get(`https://hacnet-mvp.onrender.com/my-requests/${user.id}`)
         .then((res) => setRequests(res.data))
         .catch((err) => console.error(err));
     }
@@ -65,7 +65,7 @@ function App() {
 
   const fetchTeams = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/teams");
+      const res = await axios.get("https://hacnet-mvp.onrender.com/teams");
       let dbTeams = res.data;
 
       const processedTeams = dbTeams.map((team) => ({
@@ -91,7 +91,7 @@ function App() {
         }),
       };
 
-      const res = await axios.post("http://localhost:5000/login", payload);
+      const res = await axios.post("https://hacnet-mvp.onrender.com/login", payload);
 
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data)); // Keep session
@@ -108,7 +108,7 @@ function App() {
     });
 
     setTimeout(async () => {
-      await axios.post("http://localhost:5000/upgrade", { userId: user.id });
+      await axios.post("https://hacnet-mvp.onrender.com/upgrade", { userId: user.id });
       const updatedUser = { ...user, is_premium: true };
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -144,7 +144,7 @@ function App() {
   const getAIMatches = async () => {
     setLoading(true); 
     try {
-      const res = await axios.post("http://localhost:5000/ai-match", {
+      const res = await axios.post("https://hacnet-mvp.onrender.com/ai-match", {
         userId: user.id,
         teams: allTeams,
         userSkills: user.skills,
@@ -205,7 +205,7 @@ function App() {
 
   const handleJoinRequest = async (teamId) => {
     try {
-      await axios.post("http://localhost:5000/request-join", {
+      await axios.post("https://hacnet-mvp.onrender.com/request-join", {
         userId: user.id,
         teamId: teamId,
       });
@@ -237,7 +237,7 @@ function App() {
       };
 
       // 1. Save to DB
-      await axios.post("http://localhost:5000/teams", payload);
+      await axios.post("https://hacnet-mvp.onrender.com/teams", payload);
 
       // 2. Re-fetch from DB (This ensures we get the real ID and isHost is calculated)
       await fetchTeams();

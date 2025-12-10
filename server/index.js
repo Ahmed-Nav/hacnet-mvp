@@ -18,33 +18,35 @@ const pool = new Pool({
   },
 });
 
-// 1. LOGIN (Simple check)
-app.post("/login", async (req, res) => {
-  const { email, password, name, skills } = req.body;
+const AI_URL = process.env.AI_URL || "http://localhost:8000/recommend";
 
-  try {
-    const userResult = await pool.query(
-      "SELECT * FROM users WHERE email = $1",
-      [email]
-    );
+  // 1. LOGIN (Simple check)
+  app.post("/login", async (req, res) => {
+    const { email, password, name, skills } = req.body;
 
-    if (userResult.rows.length > 0) {
-      res.json(userResult.rows[0]);
-    } else {
-      if (!name)
-        return res.status(400).json({ message: "New user requires name" });
-
-      const newUser = await pool.query(
-        "INSERT INTO users (name, email, password, skills, is_premium) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-        [name, email, password, skills || [], false]
+    try {
+      const userResult = await pool.query(
+        "SELECT * FROM users WHERE email = $1",
+        [email]
       );
-      res.json(newUser.rows[0]);
+
+      if (userResult.rows.length > 0) {
+        res.json(userResult.rows[0]);
+      } else {
+        if (!name)
+          return res.status(400).json({ message: "New user requires name" });
+
+        const newUser = await pool.query(
+          "INSERT INTO users (name, email, password, skills, is_premium) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+          [name, email, password, skills || [], false]
+        );
+        res.json(newUser.rows[0]);
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server Error" });
     }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
+  });
 
 // 2. GET ALL TEAMS 
 app.get("/teams", async (req, res) => {
@@ -119,7 +121,7 @@ app.post("/ai-match", async (req, res) => {
 
   // D. Call Python Service
   try {
-    const aiResponse = await axios.post("http://localhost:8000/recommend", {
+    const aiResponse = await axios.post(AI_URL, {
       user_skills: skillsToAnalyze,
       teams: teams,
     });
