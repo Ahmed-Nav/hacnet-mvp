@@ -9,7 +9,7 @@ app.use(cors());
 
 // DATABASE CONFIG (Replace with your actual keys)
 const connectionString =
-  "postgresql://neondb_owner:npg_kXDGEd59avFH@ep-lucky-cell-a1cj79gi-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+  "postgresql://neondb_owner:npg_kXDGEd59avFH@ep-lucky-cell-a1cj79gi-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require" || process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString: connectionString,
