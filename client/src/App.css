@@ -221,9 +221,9 @@ h3 {
   padding: 30px;
   border-radius: 8px;
   border: 1px solid var(--accent-gold);
-  position: sticky;
-  top: 40px;
+  top: 20px;
   height: fit-content;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* BUTTONS */
@@ -309,4 +309,33 @@ h3 {
   font-size: 0.8rem;
   text-transform: uppercase;
   margin-top: 15px;
+}
+
+.auth-input {
+  width: 100%;
+  background: #0F1C15;
+  /* Darker than card */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  color: #F1F0E8;
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  outline: none;
+  transition: 0.2s;
+  font-size: 0.95rem;
+}
+
+.auth-input:focus {
+  border-color: #D4AF37;
+  /* Gold focus */
+  background: #08100c;
+}
+
+.auth-label {
+  font-size: 0.7rem;
+  color: #888;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  font-weight: bold;
 }

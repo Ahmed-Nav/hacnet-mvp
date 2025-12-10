@@ -1,0 +1,160 @@
+/* src/HackathonBoard.css */
+.hackathon-container {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.board-header {
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.board-header h2 {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  color: #F1F0E8;
+}
+
+.board-header p {
+  color: #B0C4B1;
+  margin-top: 5px;
+}
+
+.hackathon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.hack-card {
+  background: #1A2F25;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hack-card:hover {
+  transform: translateY(-5px);
+  border-color: #D4AF37;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #aaa;
+  display: flex;
+  alignItems: center;
+  gap: 6px;
+}
+
+.status-badge.live {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+}
+
+.blink-dot {
+  width: 6px;
+  height: 6px;
+  background: #4CAF50;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.date-badge {
+  font-size: 0.8rem;
+  color: #D4AF37;
+  font-weight: bold;
+}
+
+.hack-card h3 {
+  font-size: 1.5rem;
+  color: #F1F0E8;
+  margin: 0 0 20px 0;
+  padding-left: 15px;
+  line-height: 1.2;
+}
+
+.prize-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.prize-section .label {
+  font-size: 0.6rem;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.prize-section .amount {
+  font-size: 1.2rem;
+  color: #D4AF37;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+}
+
+.tags-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.mini-tag {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #B0C4B1;
+}
+
+.btn-enter {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #F1F0E8;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.hack-card:hover .btn-enter {
+  background: #D4AF37;
+  color: #0F1C15;
+  border-color: #D4AF37;
+}
