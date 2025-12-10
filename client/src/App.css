@@ -1,0 +1,312 @@
+/* App.css - FINAL FIXED VERSION */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #0F1C15;
+  /* Deep Green */
+  --card-bg: #1A2F25;
+  /* Card Green */
+  --text-primary: #F1F0E8;
+  /* Cream */
+  --text-secondary: #B0C4B1;
+  /* Sage */
+  --accent-gold: #D4AF37;
+  /* Gold */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(15, 28, 21, 0.3);
+  /* Faint dark green trace */
+  border-radius: 50%;
+  border-top-color: #0F1C15;
+  /* Dark Green spinner head */
+  animation: spin 0.8s ease-in-out infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  /* ENFORCES CENTERING */
+  justify-content: center;
+  /* ENFORCES CENTERING */
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+
+/* LAYOUT CONTAINER - Fixed Width so it never looks empty */
+.container {
+  width: 1100px;
+  /* FIXED WIDTH - No more resizing weirdness */
+  padding: 40px 20px;
+}
+
+/* BRAND HEADER */
+.brand {
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.brand h1 {
+  font-size: 3rem;
+  letter-spacing: -1px;
+}
+
+.brand span {
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 5px;
+}
+
+/* MAIN GRID - STRICT 2 COLUMNS */
+.main-grid {
+  display: grid;
+  grid-template-columns: 750px 300px;
+  /* FIXED PIXEL WIDTHS - Unbreakable */
+  gap: 50px;
+  align-items: start;
+}
+
+/* --- LEFT COLUMN: CONTENT --- */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 30px;
+  /* SAFETY GAP - Button cannot touch text */
+}
+
+.teams-header h2 {
+  font-size: 2.2rem;
+  white-space: nowrap;
+}
+
+.teams-header p {
+  color: var(--text-secondary);
+  margin-top: 5px;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* TEAM CARD */
+.team-card {
+  background-color: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+}
+
+.team-card h3 {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.team-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* SKILLS */
+.skills-container {
+  margin-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 15px;
+}
+
+.skills-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent-gold);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.skill-tag.matched-skill {
+  background-color: var(--accent-gold);
+  color: #0F1C15;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  font-weight: 900;
+}
+
+.skill-tag.user-skill {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  /* Lighter background */
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.skill-tag.user-skill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-primary);
+}
+
+/* Style for the currently active filter tag */
+.skill-tag.active-filter {
+  cursor: pointer;
+  background-color: var(--accent-gold);
+  color: #0F1C15;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.6);
+  font-weight: bold;
+}
+
+/* --- RIGHT COLUMN: SIDEBAR --- */
+.user-card {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-gold);
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+}
+
+/* BUTTONS */
+.btn {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #555;
+}
+
+.btn-primary {
+  background-color: var(--accent-gold);
+  color: #0F1C15;
+  padding: 14px 28px;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  margin-right: 15px;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-join {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.btn-join:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-primary);
+}
+
+.btn-join:disabled {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.1);
+  cursor: default;
+}
+
+/* Custom Toast Styling Override */
+.go4109123758 {
+  font-family: 'Lato', sans-serif !important;
+  font-weight: bold !important;
+}
+
+.premium-badge {
+  display: inline-block;
+  background-color: var(--accent-gold);
+  color: #0F1C15;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
