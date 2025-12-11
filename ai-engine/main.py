@@ -14,6 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def read_root():
+    return {"status": "AI Engine is Online"}
+
 class MatchRequest(BaseModel):
     user_skills: List[str]
     teams: List[dict]
